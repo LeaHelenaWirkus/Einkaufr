@@ -32,4 +32,8 @@ export class ShoppingListComponent implements OnInit {
     // clear input for next item
     this.addItemForm.controls.newItem.setValue('');
   }
+
+  removeItem(item: string) {
+    this.items = this.items.filter(i => i != item);
+  }
 }

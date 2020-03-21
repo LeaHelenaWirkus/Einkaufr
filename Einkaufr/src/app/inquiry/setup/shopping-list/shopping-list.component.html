@@ -4,6 +4,7 @@
   <ul>
     <li *ngFor="let item of items">
       {{item}}
+      <button (click)="removeItem(item)">Entfernen</button>
     </li>
   </ul>
 

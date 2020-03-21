@@ -7,8 +7,10 @@
   <ng-container *ngIf="searchResults.length !== 0">
     <p>{{searchResults.length}} Ergebnisse:</p>
     <ul>
-      <li *ngFor="let r of searchResults">{{r.address.freeformAddress}}</li>
+      <li *ngFor="let r of searchResults">
+        {{r.address.freeformAddress}}
+        <button (click)="onResultSelected(r.id)">Auswählen und weiter ></button>
+      </li>
     </ul>
   </ng-container>
 </div>
-<a routerLink="../shopping-list">Weiter ></a>

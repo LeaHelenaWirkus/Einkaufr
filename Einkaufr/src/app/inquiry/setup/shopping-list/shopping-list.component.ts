@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { SetupSharedDataService } from "../../setup-shared-data.service";
 
 @Component({
   selector: 'app-shopping-list',
@@ -9,7 +11,10 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 export class ShoppingListComponent implements OnInit {
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute,
+    private data: SetupSharedDataService
   ) {
   }
 
@@ -35,5 +40,16 @@ export class ShoppingListComponent implements OnInit {
 
   removeItem(item: string) {
     this.items = this.items.filter(i => i != item);
+  }
+
+  isValid() {
+    return this.items.length > 0;
+  }
+
+  continue() {
+    if (this.isValid()) {
+      this.data.shoppingList = this.items;
+      this.router.navigate(['../complete'], {relativeTo: this.route});
+    }
   }
 }

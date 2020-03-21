@@ -17,4 +17,4 @@
   </form>
 </div>
 
-<a routerLink="../complete">Weiter ></a>
+<button (click)="continue()" [disabled]="!isValid()">Weiter ></button>

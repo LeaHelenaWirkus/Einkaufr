@@ -2,4 +2,15 @@
 
 <p>TODO</p>
 
+<input type="text" (change)="onChange($event)"/>
+
+<div *ngIf="searchResults">
+  <p *ngIf="searchResults.results.length === 0">Keine Ergebnisse gefunden.</p>
+  <ng-container *ngIf="searchResults.results.length !== 0">
+    <p>{{searchResults.results.length}} Ergebnisse:</p>
+    <ul>
+      <li *ngFor="let r of searchResults.results">{{r.address.freeformAddress}}</li>
+    </ul>
+  </ng-container>
+</div>
 <a routerLink="../shopping-list">Weiter ></a>

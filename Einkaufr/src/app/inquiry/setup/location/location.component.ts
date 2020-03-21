@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { LocationService, SearchAddressResponse } from "../../../services/location.service";
 
 @Component({
   selector: 'app-location',
   templateUrl: './location.component.html',
   styleUrls: ['./location.component.css']
 })
-export class LocationComponent implements OnInit {
+export class LocationComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(
+    private locationService: LocationService
+  ) {
   }
 
+  public searchResults: SearchAddressResponse | null = null;
+
+  onChange(event: any) {
+    this.locationService.coordinatesFromSearch(event.target.value)
+      .subscribe(value => this.searchResults = value);
+  }
 }

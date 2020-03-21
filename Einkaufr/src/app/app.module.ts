@@ -12,6 +12,7 @@ import { DetailviewComponent } from './helper/detailview/detailview.component';
 const appRoutes: Routes =[
   {path: 'home', component: HomeComponent},
   {path: 'helper/input', component: InputComponent},
+  {path: 'helper/overview', component: OverviewComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', component: HomeComponent}
 ];

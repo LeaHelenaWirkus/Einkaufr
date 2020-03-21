@@ -1,3 +1,19 @@
-<p>shopping-list works!</p>
+<h2>Welche Produkte benötigst du?</h2>
+
+<div>
+  <ul>
+    <li *ngFor="let item of items">
+      {{item}}
+    </li>
+  </ul>
+
+  <form [formGroup]="addItemForm" (ngSubmit)="addItem()">
+    <input
+      formControlName="newItem"
+      placeholder="Produkt hinzufügen"
+      type="text"/>
+    <button type="submit">Hinzufügen</button>
+  </form>
+</div>
 
 <a routerLink="../complete">Weiter ></a>

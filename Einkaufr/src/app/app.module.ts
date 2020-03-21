@@ -8,6 +8,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { InputComponent } from './helper/input/input.component';
 import { OverviewComponent } from './helper/overview/overview.component';
 import { DetailviewComponent } from './helper/detailview/detailview.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 
 const appRoutes: Routes =[
   {path: 'home', component: HomeComponent},
@@ -21,16 +23,18 @@ const appRoutes: Routes =[
     AppComponent,
     HomeComponent,
     InputComponent,
-    OverviewComponent,
-    DetailviewComponent
+    DetailviewComponent,
+    OverviewComponent
   ],
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      {enableTracing: false} // <-- debugging purposes only
     ),
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

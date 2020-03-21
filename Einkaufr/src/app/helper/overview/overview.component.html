@@ -1,1 +1,23 @@
 <p>Angebote in deiner Nähe</p>
+<div>
+  <ul>
+    <li *ngFor="let item of items" >
+      {{item.getBeschreibung()}}
+      <!--<button (click)="removeItem(item)">Entfernen</button>-->
+      <button (click)="moreInfos(item)">Weitere Infos</button>
+    </li>
+  </ul>
+
+  <!--<form [formGroup]="addItemForm" (ngSubmit)="addItem()">
+    <input
+      formControlName="newBeschreibung"
+      placeholder="Titel einfügen"
+      id="beschreibung"
+      type="text"/>
+    <input
+      formControlName="newDetails"
+      placeholder="Detaillierte Beschreibung einfügen"
+      type="text"/>
+    <button type="submit">Hinzufügen</button>
+  </form>-->
+</div>

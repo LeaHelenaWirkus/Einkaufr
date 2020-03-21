@@ -10,6 +10,7 @@ import { OverviewComponent } from './helper/overview/overview.component';
 import { DetailviewComponent } from './helper/detailview/detailview.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { InquiryModule } from './inquiry/inquiry.module';
 
 const appRoutes: Routes =[
   {path: 'home', component: HomeComponent},
@@ -32,9 +33,10 @@ const appRoutes: Routes =[
       {enableTracing: false} // <-- debugging purposes only
     ),
     BrowserModule,
-    AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    InquiryModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

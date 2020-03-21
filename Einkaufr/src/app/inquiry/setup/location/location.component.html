@@ -3,11 +3,11 @@
 <input type="text" (keyup)="onSearchKeyUp($event)"/>
 
 <div *ngIf="searchResults">
-  <p *ngIf="searchResults.results.length === 0">Keine Ergebnisse gefunden.</p>
-  <ng-container *ngIf="searchResults.results.length !== 0">
-    <p>{{searchResults.results.length}} Ergebnisse:</p>
+  <p *ngIf="searchResults.length === 0">Keine Ergebnisse gefunden.</p>
+  <ng-container *ngIf="searchResults.length !== 0">
+    <p>{{searchResults.length}} Ergebnisse:</p>
     <ul>
-      <li *ngFor="let r of searchResults.results">{{r.address.freeformAddress}}</li>
+      <li *ngFor="let r of searchResults">{{r.address.freeformAddress}}</li>
     </ul>
   </ng-container>
 </div>

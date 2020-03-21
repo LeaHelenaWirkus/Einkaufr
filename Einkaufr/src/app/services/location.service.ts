@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environments/environment";
 import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
 // For more fields see https://docs.microsoft.com/de-de/rest/api/maps/search/getsearchaddress#searchresultaddress
 export interface SearchAddressResponse {
-  results: Result[];
+  results: SearchAddressResult[];
 }
 
-export interface Result {
+export interface SearchAddressResult {
   id: string;
   address: Address;
   position: Position;
@@ -67,9 +68,13 @@ export class LocationService {
     this.subscriptionKey = environment.azureMaps.authKey;
   }
 
-  public coordinatesFromSearch(query: string): Observable<SearchAddressResponse> {
+  public coordinatesFromSearch(query: string): Observable<SearchAddressResult[]> {
     const url = `https://atlas.microsoft.com/search/address/json?api-version=1.0&query=${query}&subscription-key=${this.subscriptionKey}`;
-    return this.http.get<SearchAddressResponse>(url);
+    return this.http
+      .get<SearchAddressResponse>(url)
+      .pipe(
+        map(r => r.results)
+      );
   }
 }
 

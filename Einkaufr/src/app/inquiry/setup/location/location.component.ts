@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LocationService, SearchAddressResponse } from "../../../services/location.service";
+import { LocationService, SearchAddressResult } from "../../../services/location.service";
 import { Subject } from "rxjs";
 import { catchError, debounceTime, distinctUntilChanged, filter, switchMap } from "rxjs/operators";
 
@@ -9,6 +9,7 @@ import { catchError, debounceTime, distinctUntilChanged, filter, switchMap } fro
   styleUrls: ['./location.component.css']
 })
 export class LocationComponent implements OnInit {
+  private selectedResult: SearchAddressResult;
 
   constructor(
     private locationService: LocationService
@@ -17,7 +18,7 @@ export class LocationComponent implements OnInit {
 
   private searchUpdated: Subject<string> = new Subject<string>();
 
-  public searchResults: SearchAddressResponse | null = null;
+  public searchResults: SearchAddressResult[] | null = null;
 
   onSearchKeyUp(event: any) {
     const value: string = event.target.value;
@@ -32,7 +33,10 @@ export class LocationComponent implements OnInit {
         filter(v => v != ''),
         switchMap(v => this.locationService.coordinatesFromSearch(v)),
         // log error, but don't end pipe
-        catchError((e, obs) => {console.error(e); return obs;}),
+        catchError((e, obs) => {
+          console.error(e);
+          this.searchResults = null;
+          return obs;}),
       )
       .subscribe(value => this.searchResults = value);
   }

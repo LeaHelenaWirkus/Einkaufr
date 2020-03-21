@@ -8,6 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { InputComponent } from './helper/input/input.component';
 import { OverviewComponent } from './helper/overview/overview.component';
 import { DetailviewComponent } from './helper/detailview/detailview.component';
+import { InquiryModule } from "./inquiry/inquiry.module";
 
 const appRoutes: Routes =[
   {path: 'home', component: HomeComponent},
@@ -29,6 +30,7 @@ const appRoutes: Routes =[
       { enableTracing: true } // <-- debugging purposes only
     ),
     BrowserModule,
+    InquiryModule,
     AppRoutingModule
   ],
   providers: [],

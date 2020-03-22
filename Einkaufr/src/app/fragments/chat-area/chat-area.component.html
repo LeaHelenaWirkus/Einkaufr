@@ -14,10 +14,12 @@
     </tr>
     </tbody>
   </table>
-  <div class="input-group mt-1">
-    <input type="text" #box (keyup)="changeChatText(box.value)" (keyup.enter)="sendMessage()">
-    <div class="input-group-append">
-      <button class="btn btn-outline-secondary" type="button" (click)="sendMessage()">Senden</button>
+  <div *ngIf="useChat">
+    <div class="input-group mt-1">
+      <input type="text" #box (keyup)="changeChatText(box.value)" (keyup.enter)="sendMessage()">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" (click)="sendMessage()">Senden</button>
+      </div>
     </div>
   </div>
 </div>

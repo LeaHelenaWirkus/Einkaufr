@@ -28,6 +28,10 @@ export class OfferServiceService {
     this.sendOffer(this.ownUserOffer);
   }
 
+  getOwnUserOfferUpdate(): Observable<UserOffer> {
+    return this.http.get<UserOffer>(`${this.basePath}/${this.ownUserOffer.id}`);
+  }
+
   setOwnOffer(ownOffer: UserOffer) {
     this.ownUserOffer = ownOffer;
   }

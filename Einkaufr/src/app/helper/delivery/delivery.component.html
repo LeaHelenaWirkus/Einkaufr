@@ -22,7 +22,8 @@
           <br>
           <br>
           <app-chat-area
-            [chatTexts]="selectedOffer.chatTexts">
+            [chatTexts]="selectedOffer.chatTexts"
+          isHelper="true">
           </app-chat-area>
           <br>
           <button (click)=offerSolved() type="button" id="searchBtn" class="btn btn-sm">Helfen erledigt

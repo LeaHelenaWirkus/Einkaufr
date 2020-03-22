@@ -45,6 +45,9 @@ const appRoutes: Routes = [
     AppRoutingModule
   ],
   providers: [],
+  exports: [
+    ChatAreaComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

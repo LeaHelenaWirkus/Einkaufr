@@ -13,6 +13,7 @@ export class ChatAreaComponent implements OnInit {
   chatTextTable: string[][];
   @Input() chatTexts: ChatText[] = [];
   @Input() isHelper = false;
+  @Input() useChat = true;
 
   constructor(
     private offers: OfferServiceService
@@ -68,12 +69,23 @@ export class ChatAreaComponent implements OnInit {
     return text.chatText + ' (' + text.sendDate + ')';
   }
 
-  /*fillTable(text: string, fromHelper: boolean) {
-    if (this.isHelper) {
-      if (fromHelper) {
+  messagesListener() {
+    this.waitSeconds(10).then(value => {
+      this.offers.getOwnUserOfferUpdate().subscribe(updatedOffer => {
+        this.offers.setOwnOffer(updatedOffer);
+        this.chatTexts = updatedOffer.chatTexts;
+        this.buildLists();
+        this.messagesListener();
+      });
+    });
+  }
 
-      }
-    }
-  }*/
+  waitSeconds(sec: number) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve('');
+      }, 1000 * sec);
+    });
+  }
 
 }

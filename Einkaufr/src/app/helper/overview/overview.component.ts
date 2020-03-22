@@ -30,15 +30,12 @@ export class OverviewComponent implements OnInit {
   ngOnInit(): void {
     this.offers.getOffers().subscribe(
       value => {
-        console.log('Value for item ' + value[0].id);
         this.items = value;
-        console.log('Items after push' + this.items[0].id);
       }
     );
-    this.offers.sendTestOffer().subscribe(
+    /*this.offers.sendTestOffer().subscribe(
       value => console.log(value)
-    );
-    console.log('Items: ' + this.items);
+    );*/
   }
 
   takeOffer(item: UserOffer) {
@@ -51,7 +48,6 @@ export class OverviewComponent implements OnInit {
     this.output = '';
     // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < shoppingCart.length; i++) {
-      console.log(shoppingCart[i]);
       this.output += shoppingCart[i] + ', ';
     }
     return this.output;

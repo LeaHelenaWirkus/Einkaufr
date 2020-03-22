@@ -19,18 +19,13 @@ export class OfferService {
   ) {
   }
 
-  closeOffer() {
-    this.ownUserOffer.offerStatus = 'CLAIMED';
-    this.sendOffer(this.ownUserOffer);
-  }
-
   getOwnOffer() {
     return this.ownUserOffer;
   }
 
   sendMessage(message: ChatText) {
     this.ownUserOffer.chatTexts.push(message);
-    this.sendOffer(this.ownUserOffer);
+    this.sendOffer(this.ownUserOffer).subscribe(); /*todo eror handling*/
   }
 
   getOwnUserOfferUpdate(): Observable<UserOffer> {
@@ -38,8 +33,7 @@ export class OfferService {
   }
 
   setOwnOffer(ownOffer: UserOffer) {
-    this.ownUserOffer = ownOffer;
-    this.sendOffer(ownOffer);
+    this.sendOffer(ownOffer).subscribe( offer => this.ownUserOffer = offer); /*todo eror handling*/
   }
 
   getOffers(): Observable<UserOffer[]> {

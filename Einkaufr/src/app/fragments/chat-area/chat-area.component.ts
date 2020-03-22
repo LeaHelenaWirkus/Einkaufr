@@ -22,32 +22,31 @@ export class ChatAreaComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildLists();
+    this.messagesListener();
   }
 
 
   sendMessage() {
-    if (this.chatTextValue !== undefined) {
+    if (this.chatTextValue !== '') {
       // send message
       const message = new ChatText();
       message.sendFromHelper = this.isHelper;
       message.chatText = this.chatTextValue;
-      message.sendDate = new Date().getTime().toLocaleString();
+      /*message.sendDate = new Date().getTime().toLocaleString();*/
       this.offers.sendMessage(message);
+      this.chatTextValue = ''; /*todo clear always*/
     }
   }
 
   changeChatText(nextValue: string) {
     this.chatTextValue = nextValue;
-    console.log(this.chatTextValue);
   }
 
   buildLists() {
-    console.log('length: ' + this.chatTexts.length);
     if (this.chatTexts.length > 0) {
       this.chatTextTable = [];
-      this.chatTextTable[0] = [];
-      this.chatTextTable[1] = [];
       for (let i = 0; i < this.chatTexts.length; i++) {
+        this.chatTextTable.push([]);
         if (this.chatTexts[i].sendFromHelper) {
           if (this.isHelper) {
             this.chatTextTable[i][1] = this.buildChatTextString(this.chatTexts[i]);
@@ -66,16 +65,20 @@ export class ChatAreaComponent implements OnInit {
   }
 
   buildChatTextString(text: ChatText) {
-    return text.chatText + ' (' + text.sendDate + ')';
+    return text.sendDate !== null ? text.chatText + ' (' + text.sendDate + ')' : text.chatText;
   }
 
   messagesListener() {
-    this.waitSeconds(60).then(() => {
+    this.waitSeconds(5).then(() => {
       this.offers.getOwnUserOfferUpdate().subscribe(updatedOffer => {
+        console.log(updatedOffer.chatTexts.length);
         this.offers.setOwnOffer(updatedOffer);
         this.chatTexts = updatedOffer.chatTexts;
         this.buildLists();
         this.messagesListener();
+        if (this.chatTexts.length > 0) {
+          this.useChat = true;
+        }
       });
     });
   }

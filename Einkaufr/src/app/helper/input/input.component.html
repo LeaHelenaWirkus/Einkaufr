@@ -1,35 +1,56 @@
-<div class="container">
-  <p>Wo bietest du deine Hilfe an?</p>
-  <div class="row">
-    <input placeholder="PLZ/Adresse/Stadt">
-    <!--<div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Entfernung
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">5km</a>
-        <a class="dropdown-item" href="#">10km</a>
-        <a class="dropdown-item" href="#">20km</a>
-        <a class="dropdown-item" href="#">30km</a>
-        <a class="dropdown-item" href="#">40km</a>
-        <a class="dropdown-item" href="#">50km</a>
-        <a class="dropdown-item" href="#">>50km</a>
+<div class="site-wrapper">
+
+  <div class="site-wrapper-inner">
+
+    <div class="cover-container">
+
+      <header class="masthead clearfix">
+        <div class="inner">
+          <h3 class="masthead-brand"><a class="brandMastHead" routerLink="/">Einkaufr</a></h3>
+          <nav class="nav nav-masthead">
+            <a class="nav-link active" href="#">Home</a>
+            <a class="nav-link" href="#">Features</a>
+            <a class="nav-link" href="#">Contact</a>
+          </nav>
+        </div>
+      </header>
+      <div class="cover-container">
+        <div class="container">
+          <p class="lead">Where would you like to contribute?</p>
+          <div class="row">
+            <input placeholder="PLZ/Address/City">
+            <!--<div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Entfernung
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">5km</a>
+                <a class="dropdown-item" href="#">10km</a>
+                <a class="dropdown-item" href="#">20km</a>
+                <a class="dropdown-item" href="#">30km</a>
+                <a class="dropdown-item" href="#">40km</a>
+                <a class="dropdown-item" href="#">50km</a>
+                <a class="dropdown-item" href="#">>50km</a>
+              </div>
+            </div>-->
+            <input placeholder="Max. distance">
+            <div>
+              <button type="button" id="searchBtn" class="btn btn-sm" routerLink="/helper/overview">>
+                <span class="glyphicon glyphicon-search"></span> Search
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>-->
-    <input placeholder="Max. Entfernung">
-    <div>
-      <button routerLink="/helper/overview">
-        <p>Suchen</p>
-      </button>
-        <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
-             xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd"
-                d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
-                clip-rule="evenodd"/>
-          <path fill-rule="evenodd"
-                d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
-                clip-rule="evenodd"/>
-        </svg>
+      <footer class="mastfoot">
+        <div class="inner">
+          <p>Powered by
+            <a href="https://getbootstrap.com/">Bootstrap</a></p>
+        </div>
+      </footer>
+
     </div>
+
   </div>
+
 </div>

@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {UserOffer} from '../../UserOffer';
 import {OfferServiceService} from '../../offer-service.service';
 import {Router} from '@angular/router';
-import {UserOffer} from '../../UserOffer';
-
 
 @Component({
   selector: 'app-overview',
@@ -26,34 +25,37 @@ export class OverviewComponent implements OnInit {
   });
 
   public items: UserOffer[] = [];
+  private output: string;
 
   ngOnInit(): void {
-    /*this.items = [
-      new Angebot('Einkaufen', 'Ich brauche xyz'),
-      new Angebot('Hund ausführen', 'Mein Hund xyz muss raus')
-    ];*/
     this.offers.getOffers().subscribe(
-      value => this.items.push()
+      value => {
+        console.log('Value for item ' + value[0].id);
+        this.items = value;
+        console.log('Items after push' + this.items[0].id);
+      }
     );
-    console.log(this.items);
+    this.offers.sendTestOffer().subscribe(
+      value => console.log(value)
+    );
+    console.log('Items: ' + this.items);
 
   }
 
 
-  moreInfos(item: UserOffer) {
-    // TODO Modal mit Details öffnen
+  takeOffer(item: UserOffer) {
     this.selectedOffer = item;
-  }
-
-  takeOffer() {
     this.offers.setOwnOffer(this.selectedOffer);
     this.router.navigate(['helper/delivery']);
   }
 
-
-  test() {
-    this.offers.getOffers().subscribe(
-      value => console.log(value),
-      error => console.log('error'));
+  returnShoppingCart(shoppingCart: string[]) {
+    this.output = '';
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < shoppingCart.length; i++) {
+      console.log(shoppingCart[i]);
+      this.output += shoppingCart[i] + ', ';
+    }
+    return this.output;
   }
 }

@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {FormBuilder} from '@angular/forms';
 import {OfferServiceService} from '../../offer-service.service';
 import {UserOffer} from '../../UserOffer';
 
@@ -26,7 +25,4 @@ export class DeliveryComponent implements OnInit {
   offerSolved() {
     this.router.navigate(['']);
   }
-
-  // sendMessage(nextMessage: )
-
 }

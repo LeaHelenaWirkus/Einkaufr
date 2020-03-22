@@ -1,13 +1,14 @@
 
 
 <h4>{{selectedOffer?.title}}</h4>
-<p>{{selectedOffer?.getShoppingCart()}}</p>
+<p>{{selectedOffer?.shoppingCart}}</p>
 <br>
   Karte mit Zielort
 <br>
-
-<!--<textarea class="col-12" [rows]="12" >Chatbereich</textarea>-->
-<app-chat-area></app-chat-area>
+<br>
+<app-chat-area
+[chatTexts]="selectedOffer.chatTexts">
+</app-chat-area>
 <br>
 <button (click)=offerSolved()>Helfen erledigt</button>
 

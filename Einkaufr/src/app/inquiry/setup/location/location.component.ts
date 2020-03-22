@@ -1,10 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { LocationService, SearchAddressResult, SearchAddressResponse } from "../../../services/location.service";
-import { Subject } from "rxjs";
-import { catchError, debounceTime, distinctUntilChanged, filter, switchMap } from "rxjs/operators";
-import { FormBuilder } from "@angular/forms";
-import { SetupSharedDataService } from "../../setup-shared-data.service";
-import { ActivatedRoute, Router } from "@angular/router";
+import { LocationService, SearchAddressResult, SearchAddressResponse } from '../../../services/location.service';
+import { Subject } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
+import { FormBuilder } from '@angular/forms';
+import { SetupSharedDataService } from '../../setup-shared-data.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export interface Location {
   longitude: number;
@@ -58,6 +58,7 @@ export class LocationComponent implements OnInit {
       longitude: selectedResult.position.lon,
       latitude: selectedResult.position.lat
     };
+
 
     this.router.navigate(['../shopping-list'], {relativeTo: this.route});
   }

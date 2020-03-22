@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ChatText} from '../../ChatText';
+import {OfferServiceService} from '../../offer-service.service';
 
 @Component({
   selector: 'app-chat-area',
@@ -10,16 +11,15 @@ export class ChatAreaComponent implements OnInit {
 
   chatTextValue = '';
   chatTextTable: string[][];
-  @Input() chatTexts: ChatText[];
+  @Input() chatTexts: ChatText[] = [];
   @Input() isHelper = false;
 
-  constructor() {
+  constructor(
+    private offers: OfferServiceService
+  ) {
   }
 
   ngOnInit(): void {
-    this.chatTexts = [ new ChatText(), new ChatText()];
-    this.chatTexts.forEach( value => value.chatText = 'Hallo Welt');
-    this.chatTexts[0].sendFromHelper = true;
     this.buildLists();
   }
 
@@ -27,7 +27,11 @@ export class ChatAreaComponent implements OnInit {
   sendMessage() {
     if (this.chatTextValue !== undefined) {
       // send message
-      console.log(this.chatTextValue);
+      const message = new ChatText();
+      message.sendFromHelper = this.isHelper;
+      message.chatText = this.chatTextValue;
+      message.sendDate = new Date().getTime().toLocaleString();
+      this.offers.sendMessage(message);
     }
   }
 

@@ -1,15 +1,35 @@
 <p>Angebote in deiner Nähe</p>
 <div>
-  <ul>
-    <li *ngFor="let item of items" >
-      {{item.id}}
-      {{item.title}}
-      <button (click)="moreInfos(item)">Weitere Infos</button>
-    </li>
-  </ul>
-  <div *ngIf="selectedOffer !== null">
-    <label>{{selectedOffer.getShoppingCart()}}</label>
-    Karte mit Zielort
-    <button (click)=takeOffer()>Diese Hilfsanfrage annehmen</button>
-  </div>
+      <table>
+        <thead>
+        <td>Status</td>
+        <td>Beschreibung</td>
+        <td>Ort</td>
+        <td>Einkaufsliste</td>
+          <td>Auswahl</td>
+        </thead>
+        <tr *ngFor="let item of items">
+          <td>{{item.offerStatus}}</td>
+          <td>{{item.title}}</td>
+          <td>{{item.userCoordinate.latitude}}</td>
+          <td>{{returnShoppingCart(item.shoppingCart)}}</td>
+          <td><button (click)="takeOffer(item)">Diese Hilfsanfrage annehmen</button></td>
+        </tr>
+      </table>
+      <!--<button (click)="removeItem(item)">Entfernen</button>
+      <button (click)="moreInfos(item)">Weitere Infos</button>-->
+
+  <!--<form [formGroup]="addItemForm" (ngSubmit)="addItem()">
+    <input
+      formControlName="newBeschreibung"
+      placeholder="Titel einfügen"
+      id="beschreibung"
+      type="text"/>
+    <input
+      formControlName="newDetails"
+      placeholder="Detaillierte Beschreibung einfügen"
+      type="text"/>
+    <button type="submit">Hinzufügen</button>
+  </form>-->
+
 </div>

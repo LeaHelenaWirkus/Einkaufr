@@ -1,16 +1,49 @@
-<h2>Wohin soll geliefert werden?</h2>
+<div class="site-wrapper">
 
-<input type="text" (keyup)="onSearchKeyUp($event)"/>
+  <div class="site-wrapper-inner">
 
-<div *ngIf="searchResults">
-  <p *ngIf="searchResults.length === 0">Keine Ergebnisse gefunden.</p>
-  <ng-container *ngIf="searchResults.length !== 0">
-    <p>{{searchResults.length}} Ergebnisse:</p>
-    <ul>
-      <li *ngFor="let r of searchResults">
-        {{r.address.freeformAddress}}
-        <button (click)="onResultSelected(r.id)">Auswählen und weiter ></button>
-      </li>
-    </ul>
-  </ng-container>
+    <div class="cover-container">
+
+      <header class="masthead clearfix">
+        <div class="inner">
+          <h3 class="masthead-brand"><a class="brandMastHead" routerLink="/">Einkaufr</a></h3>
+          <nav class="nav nav-masthead">
+            <a class="nav-link active" href="#">Home</a>
+            <a class="nav-link" href="#">Features</a>
+            <a class="nav-link" href="#">Contact</a>
+          </nav>
+        </div>
+      </header>
+
+      <p class="lead">Where do you need your supplies delivered?</p>
+      <div class="cover-container">
+        <input type="text" (keyup)="onSearchKeyUp($event)"/>
+
+        <div *ngIf="searchResults">
+          <p *ngIf="searchResults.length === 0">Sorry...No results found.</p>
+          <ng-container *ngIf="searchResults.length !== 0">
+            <p>{{searchResults.length}} Results:</p>
+            <ul>
+              <li *ngFor="let r of searchResults">
+                {{r.address.freeformAddress}}
+                <button (click)="onResultSelected(r.id)" class="btn btn-lg btn-secondary">Submit</button>
+              </li>
+            </ul>
+          </ng-container>
+        </div>
+        <button type="button" id="searchBtn" class="btn btn-sm">
+          <span class="glyphicon glyphicon-search"></span> Submit
+        </button>
+      </div>
+      <footer class="mastfoot">
+        <div class="inner">
+          <p>Powered by
+            <a href="https://getbootstrap.com/">Bootstrap</a></p>
+        </div>
+      </footer>
+
+    </div>
+
+  </div>
+
 </div>

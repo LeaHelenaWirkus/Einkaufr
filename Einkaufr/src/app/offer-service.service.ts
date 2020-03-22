@@ -4,20 +4,25 @@ import {HttpClient} from "@angular/common/http";
 import {UserOffer} from "./UserOffer";
 import {UserCoordinate} from "./UserCoordinate";
 
-
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class OfferServiceService {
-  private basePath = 'https://einkaufr.herokuapp.com/api/v1/offers'
+  private ownUserOffer: UserOffer = null;
+  private basePath = 'https://einkaufr.herokuapp.com/api/v1/offers';
+
   constructor(
     private http: HttpClient
   ) { }
 
+  getOwnOffer() {
+    return this.ownUserOffer;
+  }
 
-//returns array of UserOffers
+
+  setOwnOffer(ownOffer: Angebot) {
+    this.angebot = ownOffer;
+  }
 
   getOffers(): Observable<UserOffer[]> {
     this.http.get<UserOffer>(`${this.basePath}`).subscribe(

@@ -4,8 +4,7 @@ import {Angebot} from "./Angebot";
 import {UserOffer} from "../../UserOffer";
 import {UserCoordinate} from "../../UserCoordinate";
 import {OfferServiceService} from "../../offer-service.service";
-
-
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-overview',
@@ -15,10 +14,14 @@ import {OfferServiceService} from "../../offer-service.service";
 
 export class OverviewComponent implements OnInit {
 
+  selectedOffer: UserOffer = null;
+
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     private offers: OfferServiceService
-  ) { }
+  ) {}
+
   public addItemForm: FormGroup = this.fb.group({
     newItem: ['']
   });
@@ -27,10 +30,6 @@ export class OverviewComponent implements OnInit {
   private output: string;
 
   ngOnInit(): void {
-    /*this.items = [
-      new Angebot("Einkaufen", "Ich brauche xyz"),
-      new Angebot( "Hund ausführen", "Mein Hund xyz muss raus")
-    ];*/
     this.offers.getOffers().subscribe(
       value => {console.log("Value for item " + value[0].id);
       this.items = value;
@@ -42,18 +41,13 @@ export class OverviewComponent implements OnInit {
     console.log("Items: " + this.items);
 
   }
-
-
-  moreInfos(item :UserOffer){
-      //TODO Modal mit Details öffnen
   }
 
-  test(){
-    this.offers.getOffers().subscribe(
-      value => console.log(value),
-      error => console.log("error"));
+  takeOffer(item: UserOffer) {
+    this.selectedOffer = item;
+    this.offers.setOwnOffer(this.selectedOffer);
+    this.router.navigate(['helper/delivery']);
   }
-
 
   returnShoppingCart(shoppingCart: string[]) {
     this.output = '';

@@ -6,15 +6,16 @@
         <td>Beschreibung</td>
         <td>Ort</td>
         <td>Einkaufsliste</td>
+          <td>Auswahl</td>
         </thead>
         <tr *ngFor="let item of items">
           <td>{{item.offerStatus}}</td>
           <td>{{item.title}}</td>
           <td>{{item.userCoordinate.latitude}}</td>
           <td>{{returnShoppingCart(item.shoppingCart)}}</td>
+          <td><button (click)="takeOffer(item)">Diese Hilfsanfrage annehmen</button></td>
         </tr>
       </table>
-
       <!--<button (click)="removeItem(item)">Entfernen</button>
       <button (click)="moreInfos(item)">Weitere Infos</button>-->
 
@@ -30,4 +31,5 @@
       type="text"/>
     <button type="submit">Hinzufügen</button>
   </form>-->
+
 </div>

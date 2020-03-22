@@ -1,10 +1,40 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <button routerLink="/helper/input">Helfer</button>
+<div class="site-wrapper">
+
+  <div class="site-wrapper-inner">
+
+    <div class="cover-container">
+
+      <header class="masthead clearfix">
+        <div class="inner">
+          <h3 class="masthead-brand"><a class="brandMastHead" routerLink="/">Einkaufr</a></h3>
+          <nav class="nav nav-masthead">
+            <a class="nav-link active" href="#">Home</a>
+            <a class="nav-link" href="#">Features</a>
+            <a class="nav-link" href="#">Contact</a>
+          </nav>
+        </div>
+      </header>
+
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">Crowdsourced shopping-aid</h1>
+        <p class="lead">Helping citizens with grocery shopping and keeping the outside to a minimum.</p>
+      </main>
+      <div class="cover-container">
+        <p class="lead">
+          <button id="helperBtn" routerLink="/helper/input" class="btn btn-lg btn-secondary">I am a Concerned Citizen
+          </button>
+          <button id="helpeeBtn" routerLink="/inquiry/" class="btn btn-lg btn-secondary">I am in need of help</button>
+        </p>
+      </div>
+      <footer class="mastfoot">
+        <div class="inner">
+          <p>Powered by
+            <a href="https://getbootstrap.com/">Bootstrap</a></p>
+        </div>
+      </footer>
+
     </div>
-    <div class="col">
-      <button routerLink="/inquiry/">Hilfebedürftiger</button>
-    </div>
+
   </div>
+
 </div>

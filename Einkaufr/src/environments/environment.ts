@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   azureMaps: {
     // TODO retrieve key via backend
-    authKey: ''
+    authKey: '4CH3oNjkX8V-Dl-nKKMP9dp8iFcSb3hczEGHrOqrsKQ'
   }
 };
 

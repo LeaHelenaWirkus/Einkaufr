@@ -7,7 +7,4 @@ export class UserOffer {
   userCoordinate: UserCoordinate;
   offerStatus: string;
   shoppingCart: string[];
-
-
-
 }

@@ -1,3 +1,4 @@
+
 <div class="site-wrapper">
 
   <div class="site-wrapper-inner">
@@ -20,12 +21,22 @@
       </main>
       <div class="cover-container">
         <div>
-          <ul class="list-group">
-            <li *ngFor="let item of items" class="list-group-item">
-              {{item.getBeschreibung()}}
-              <button (click)="moreInfos(item)">More information</button>
-            </li>
-          </ul>
+         <table>
+            <thead>
+              <td>Status</td>
+              <td>Beschreibung</td>
+              <td>Ort</td>
+              <td>Einkaufsliste</td>
+              <td>Auswahl</td>
+            </thead>
+            <tr *ngFor="let item of items">
+              <td>{{item.offerStatus}}</td>
+               <td>{{item.title}}</td>
+              <td>{{item.userCoordinate.latitude}}</td>
+              <td>{{returnShoppingCart(item.shoppingCart)}}</td>
+              <td><button (click)="takeOffer(item)">Diese Hilfsanfrage annehmen</button></td>
+            </tr>
+          </table>
           <div *ngIf="selectedOffer !== null">
             <label>{{selectedOffer.getDetails()}}</label>
             Map with the target location

@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Angebot} from '../overview/Angebot';
 import {Router} from '@angular/router';
-import {FormBuilder} from '@angular/forms';
 import {OfferServiceService} from '../../offer-service.service';
+import {UserOffer} from '../../UserOffer';
 
 @Component({
   selector: 'app-delivery',
@@ -11,7 +10,7 @@ import {OfferServiceService} from '../../offer-service.service';
 })
 export class DeliveryComponent implements OnInit {
 
-  selectedAngebot: Angebot;
+  selectedAngebot: UserOffer;
 
   constructor(
     private router: Router,

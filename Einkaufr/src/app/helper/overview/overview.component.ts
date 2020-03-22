@@ -23,7 +23,8 @@ export class OverviewComponent implements OnInit {
     newItem: ['']
   });
 
-  public items: UserOffer[] = [];
+  public items: UserOffer[];
+  private output: string;
 
   ngOnInit(): void {
     /*this.items = [
@@ -31,9 +32,14 @@ export class OverviewComponent implements OnInit {
       new Angebot( "Hund ausführen", "Mein Hund xyz muss raus")
     ];*/
     this.offers.getOffers().subscribe(
-      value => this.items.push()
+      value => {console.log("Value for item " + value[0].id);
+      this.items = value;
+      console.log("Items after push" + this.items[0].id)}
     );
-    console.log(this.items);
+    this.offers.sendTestOffer().subscribe(
+      value => console.log(value)
+    )
+    console.log("Items: " + this.items);
 
   }
 
@@ -46,5 +52,15 @@ export class OverviewComponent implements OnInit {
     this.offers.getOffers().subscribe(
       value => console.log(value),
       error => console.log("error"));
+  }
+
+
+  returnShoppingCart(shoppingCart: string[]) {
+    this.output = '';
+    for (let i = 0; i < shoppingCart.length; i++) {
+      console.log(shoppingCart[i]);
+      this.output += shoppingCart[i] + ", ";
+    }
+    return this.output;
   }
 }

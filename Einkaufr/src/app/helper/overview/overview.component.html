@@ -1,12 +1,22 @@
 <p>Angebote in deiner Nähe</p>
 <div>
-  <ul>
-    <li *ngFor="let item of items" >
-      {{item.id}}
+      <table>
+        <thead>
+        <td>Status</td>
+        <td>Beschreibung</td>
+        <td>Ort</td>
+        <td>Einkaufsliste</td>
+        </thead>
+        <tr *ngFor="let item of items">
+          <td>{{item.offerStatus}}</td>
+          <td></td>
+          <td>{{item.userCoordinate.latitude}}</td>
+          <td>{{returnShoppingCart(item.shoppingCart)}}</td>
+        </tr>
+      </table>
+
       <!--<button (click)="removeItem(item)">Entfernen</button>
       <button (click)="moreInfos(item)">Weitere Infos</button>-->
-    </li>
-  </ul>
 
   <!--<form [formGroup]="addItemForm" (ngSubmit)="addItem()">
     <input

@@ -17,16 +17,22 @@ export class OfferServiceService {
   ) { }
 
 
+//returns array of UserOffers
 
-  getOffers(): Observable<UserOffer> {
+  getOffers(): Observable<UserOffer[]> {
     this.http.get<UserOffer>(`${this.basePath}`).subscribe(
       value => console.log(value)
     )
-    return this.http.get<UserOffer>(`${this.basePath}`);
+    return this.http.get<UserOffer[]>(`${this.basePath}`);
   }
 
   sendOffer(offer: UserOffer): Observable<any> {
-    /*const coordinate: UserCoordinate = <UserCoordinate> {
+
+    return this.http.post(`${this.basePath}`, offer);
+  }
+
+  sendTestOffer(): Observable<any>{
+    const coordinate: UserCoordinate = <UserCoordinate> {
       id: 3,
       longitude: 11234,
       latitude: 87654
@@ -36,9 +42,9 @@ export class OfferServiceService {
       timestamp: 0,
       userCoordinate: coordinate,
       offerStatus: `CLAIMED`,
-      shoppingCart: [`String`]
-    };*/
-    return this.http.post(`${this.basePath}`, offer);
-  }
+      shoppingCart: [`Eier`, 'Mehl']
+    };
+  return this.http.post(`${this.basePath}`, offertest);
 
+}
 }

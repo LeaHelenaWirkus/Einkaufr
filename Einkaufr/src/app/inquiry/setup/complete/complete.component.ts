@@ -24,12 +24,15 @@ export class CompleteComponent implements OnInit {
     };
     const offer: UserOffer = <UserOffer>{
       id: 0,
+      title: "",
       timestamp: 0,
       userCoordinate: coordinate,
       offerStatus: `UNCLAIMED`,
       shoppingCart: this.data.shoppingList
     };
-    this.offerService.sendOffer(offer);
+    this.offerService.sendOffer(offer).subscribe(
+      value => console.log(value)
+    );
     this.offerService.getOffers().subscribe(
       value => console.log(value)
     )

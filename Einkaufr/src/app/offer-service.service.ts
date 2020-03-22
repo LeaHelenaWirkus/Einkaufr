@@ -49,19 +49,19 @@ export class OfferServiceService {
     } as UserCoordinate;
     const message1: ChatText = {
       id: 0,
-      sendDate: 'heute',
+      sendDate: 'heute-15 Uhr',
       chatText: 'Hi, ich komme um 18 Uhr vorbei',
       sendFromHelper: true
     };
     const message2: ChatText = {
       id: 0,
-      sendDate: 'heute',
+      sendDate: 'heute-16 Uhr',
       chatText: 'Hallo, vielen Dank für deine Hilfe',
       sendFromHelper: false
     };
     const offerTest: UserOffer = {
       id: 0,
-      title: "",
+      title: 'Brauche Nahrung',
       timestamp: 0,
       userCoordinate: coordinate,
       offerStatus: `CLAIMED`,

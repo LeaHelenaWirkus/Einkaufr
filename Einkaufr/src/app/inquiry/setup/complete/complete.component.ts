@@ -3,6 +3,7 @@ import {UserCoordinate} from '../../../UserCoordinate';
 import {UserOffer} from '../../../UserOffer';
 import {SetupSharedDataService} from '../../setup-shared-data.service';
 import {OfferServiceService} from '../../../offer-service.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-complete',
@@ -13,7 +14,8 @@ export class CompleteComponent implements OnInit {
 
   constructor(
     private data: SetupSharedDataService,
-    private offerService: OfferServiceService
+    private offerService: OfferServiceService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -37,6 +39,10 @@ export class CompleteComponent implements OnInit {
       value => console.log(value)
     );
 
+  }
+
+  offerSolved() {
+    this.router.navigate(['']);
   }
 
 }

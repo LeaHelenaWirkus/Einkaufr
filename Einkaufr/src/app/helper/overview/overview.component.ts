@@ -39,9 +39,7 @@ export class OverviewComponent implements OnInit {
       value => console.log(value)
     );
     console.log('Items: ' + this.items);
-
   }
-
 
   takeOffer(item: UserOffer) {
     this.selectedOffer = item;

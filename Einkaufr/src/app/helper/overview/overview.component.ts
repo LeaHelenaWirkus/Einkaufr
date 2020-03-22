@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {UserOffer} from '../../UserOffer';
-import {OfferServiceService} from '../../offer-service.service';
+import {OfferService} from '../../services/offer.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -17,7 +17,7 @@ export class OverviewComponent implements OnInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private offers: OfferServiceService
+    private offers: OfferService
   ) {}
 
   public addItemForm: FormGroup = this.fb.group({

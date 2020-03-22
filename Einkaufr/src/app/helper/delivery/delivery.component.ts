@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {OfferServiceService} from '../../offer-service.service';
+import {OfferService} from '../../services/offer.service';
 import {UserOffer} from '../../UserOffer';
 
 @Component({
@@ -14,7 +14,7 @@ export class DeliveryComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private offers: OfferServiceService
+    private offers: OfferService
   ) {
   }
 

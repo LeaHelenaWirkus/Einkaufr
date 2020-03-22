@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { SetupSharedDataService } from "../../setup-shared-data.service";
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {SetupSharedDataService} from '../../setup-shared-data.service';
+import {OfferService} from '../../../services/offer.service';
+import {UserOffer} from '../../../UserOffer';
+import {UserCoordinate} from '../../../UserCoordinate';
+import {UserService} from '../../../services/user.service';
 
 @Component({
   selector: 'app-shopping-list',
@@ -10,11 +14,15 @@ import { SetupSharedDataService } from "../../setup-shared-data.service";
 })
 export class ShoppingListComponent implements OnInit {
 
+  offer: UserOffer;
+
   constructor(
     private fb: FormBuilder,
+    private offerService: OfferService,
     private router: Router,
     private route: ActivatedRoute,
-    private data: SetupSharedDataService
+    private data: SetupSharedDataService,
+    private useService: UserService
   ) {
   }
 
@@ -26,9 +34,9 @@ export class ShoppingListComponent implements OnInit {
 
   ngOnInit(): void {
     this.items = [
-      "Dummy Produkt #1",
-      "Dummy Produkt #2"
-    ]
+      'Dummy Produkt #1',
+      'Dummy Produkt #2'
+    ];
   }
 
   addItem() {
@@ -39,7 +47,7 @@ export class ShoppingListComponent implements OnInit {
   }
 
   removeItem(item: string) {
-    this.items = this.items.filter(i => i != item);
+    this.items = this.items.filter(i => i !== item);
   }
 
   isValid() {
@@ -49,7 +57,28 @@ export class ShoppingListComponent implements OnInit {
   continue() {
     if (this.isValid()) {
       this.data.shoppingList = this.items;
+      this.buildOffer();
+      this.offerService.setOwnOffer(this.offer);
       this.router.navigate(['../complete'], {relativeTo: this.route});
     }
+  }
+
+  buildOffer() {
+    const userCoordinate: UserCoordinate = {
+      id: 0,
+      latitude: this.data.selectedLocation.latitude,
+      longitude: this.data.selectedLocation.longitude,
+    };
+    this.offer = {
+      id: 0,
+      owner: this.useService.getUserId(),
+      helper: '',
+      title: 'Brauche Nahrung',
+      timestamp: 0,
+      userCoordinate,
+      offerStatus: `UNCLAIMED`,
+      shoppingCart: this.data.shoppingList,
+      chatTexts: []
+    };
   }
 }

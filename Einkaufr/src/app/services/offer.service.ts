@@ -1,15 +1,15 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {UserOffer} from './UserOffer';
-import {UserCoordinate} from './UserCoordinate';
-import {ChatText} from './ChatText';
-import {UserService} from './services/user.service';
+import {UserOffer} from '../UserOffer';
+import {UserCoordinate} from '../UserCoordinate';
+import {ChatText} from '../ChatText';
+import {UserService} from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class OfferServiceService {
+export class OfferService {
   private ownUserOffer: UserOffer = null;
   private basePath = 'https://einkaufr.herokuapp.com/api/v1/offers';
 
@@ -17,6 +17,11 @@ export class OfferServiceService {
     private http: HttpClient,
     private userService: UserService
   ) {
+  }
+
+  closeOffer() {
+    this.ownUserOffer.offerStatus = 'CLAIMED';
+    this.sendOffer(this.ownUserOffer);
   }
 
   getOwnOffer() {
@@ -34,6 +39,7 @@ export class OfferServiceService {
 
   setOwnOffer(ownOffer: UserOffer) {
     this.ownUserOffer = ownOffer;
+    this.sendOffer(ownOffer);
   }
 
   getOffers(): Observable<UserOffer[]> {

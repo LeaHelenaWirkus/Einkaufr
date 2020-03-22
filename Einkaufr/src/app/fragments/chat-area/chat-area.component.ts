@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ChatText} from '../../ChatText';
-import {OfferServiceService} from '../../offer-service.service';
+import {OfferService} from '../../services/offer.service';
 
 @Component({
   selector: 'app-chat-area',
@@ -13,10 +13,10 @@ export class ChatAreaComponent implements OnInit {
   chatTextTable: string[][];
   @Input() chatTexts: ChatText[] = [];
   @Input() isHelper = false;
-  @Input() useChat = true;
+  @Input() useChat = false;
 
   constructor(
-    private offers: OfferServiceService
+    private offers: OfferService
   ) {
   }
 
@@ -70,7 +70,7 @@ export class ChatAreaComponent implements OnInit {
   }
 
   messagesListener() {
-    this.waitSeconds(10).then(value => {
+    this.waitSeconds(60).then(() => {
       this.offers.getOwnUserOfferUpdate().subscribe(updatedOffer => {
         this.offers.setOwnOffer(updatedOffer);
         this.chatTexts = updatedOffer.chatTexts;

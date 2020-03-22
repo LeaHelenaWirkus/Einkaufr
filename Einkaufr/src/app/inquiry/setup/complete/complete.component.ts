@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {UserCoordinate} from '../../../UserCoordinate';
 import {UserOffer} from '../../../UserOffer';
 import {SetupSharedDataService} from '../../setup-shared-data.service';
-import {OfferServiceService} from '../../../offer-service.service';
+import {OfferService} from '../../../services/offer.service';
 import {Router} from '@angular/router';
+import {ChatText} from '../../../ChatText';
 
 @Component({
   selector: 'app-complete',
@@ -12,14 +13,16 @@ import {Router} from '@angular/router';
 })
 export class CompleteComponent implements OnInit {
 
+  chatTexts: ChatText[];
+
   constructor(
     private data: SetupSharedDataService,
-    private offerService: OfferServiceService,
+    private offerService: OfferService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    const coordinate: UserCoordinate = {
+    /*const coordinate: UserCoordinate = {
       id: 0,
       longitude: this.data.selectedLocation.longitude,
       latitude: this.data.selectedLocation.latitude
@@ -34,11 +37,7 @@ export class CompleteComponent implements OnInit {
     } as UserOffer;
     this.offerService.sendOffer(offer).subscribe(
       value => console.log(value)
-    );
-    this.offerService.getOffers().subscribe(
-      value => console.log(value)
-    );
-
+    );*/
   }
 
   offerSolved() {

@@ -7,6 +7,7 @@ import { ShoppingListComponent } from './setup/shopping-list/shopping-list.compo
 import { CompleteComponent } from './setup/complete/complete.component';
 import { LocationComponent } from './setup/location/location.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {ChatAreaModule} from '../fragments/chat-area/chat-area.module';
 
 
 @NgModule({
@@ -14,14 +15,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SetupComponent,
     ShoppingListComponent,
     CompleteComponent,
-    LocationComponent
+    LocationComponent,
   ],
   imports: [
+    ChatAreaModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     InquiryRoutingModule,
-  ]
+  ],
 })
 export class InquiryModule {
 }

@@ -21,7 +21,11 @@
       <div class="cover-container">
         <p class="lead">We check the neighbourhood for the people who can help you, with the grocery shopping.</p>
         <p class="lead">Please stay on this page. You will be noticed shortly.</p>
-        <button (click)=offerSolved() type="button" id="searchBtn" class="btn btn-sm">Hilfe erhalten
+        <app-chat-area
+          [chatTexts]="chatTexts"
+          isHelper="true">
+        </app-chat-area>
+        <button (click)=offerSolved() type="button" id="searchBtn" class="btn btn-sm">Ich habe die Hilfe erhalten
           <span class="glyphicon glyphicon-search"></span></button>
       </div>
       <footer class="mastfoot">

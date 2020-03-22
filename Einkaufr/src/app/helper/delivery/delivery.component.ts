@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Angebot} from '../overview/Angebot';
 import {Router} from '@angular/router';
 import {FormBuilder} from '@angular/forms';
 import {OfferServiceService} from '../../offer-service.service';
+import {UserOffer} from '../../UserOffer';
 
 @Component({
   selector: 'app-delivery',
@@ -11,7 +11,7 @@ import {OfferServiceService} from '../../offer-service.service';
 })
 export class DeliveryComponent implements OnInit {
 
-  selectedAngebot: Angebot;
+  selectedOffer: UserOffer;
 
   constructor(
     private router: Router,
@@ -20,11 +20,13 @@ export class DeliveryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.selectedAngebot = this.offers.getOwnOffer();
+    this.selectedOffer = this.offers.getOwnOffer();
   }
 
   offerSolved() {
     this.router.navigate(['']);
   }
+
+  // sendMessage(nextMessage: )
 
 }

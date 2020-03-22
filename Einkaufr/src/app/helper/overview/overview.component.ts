@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {Angebot} from './Angebot';
 import {OfferServiceService} from '../../offer-service.service';
 import {Router} from '@angular/router';
+import {UserOffer} from '../../UserOffer';
 
 
 @Component({
@@ -13,7 +13,7 @@ import {Router} from '@angular/router';
 
 export class OverviewComponent implements OnInit {
 
-  selectedOffer: Angebot = null;
+  selectedOffer: UserOffer = null;
 
   constructor(
     private router: Router,
@@ -25,20 +25,22 @@ export class OverviewComponent implements OnInit {
     newItem: ['']
   });
 
-  public items: Angebot[] = [];
+  public items: UserOffer[] = [];
 
   ngOnInit(): void {
-    this.items = [
+    /*this.items = [
       new Angebot('Einkaufen', 'Ich brauche xyz'),
       new Angebot('Hund ausführen', 'Mein Hund xyz muss raus')
-    ];
-    this.offers.sendOffer().subscribe(
-      value => this.test()
+    ];*/
+    this.offers.getOffers().subscribe(
+      value => this.items.push()
     );
+    console.log(this.items);
+
   }
 
 
-  moreInfos(item: Angebot) {
+  moreInfos(item: UserOffer) {
     // TODO Modal mit Details öffnen
     this.selectedOffer = item;
   }

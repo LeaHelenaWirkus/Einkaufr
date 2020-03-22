@@ -2,14 +2,12 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {UserOffer} from './UserOffer';
-import {Angebot} from './helper/overview/Angebot';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class OfferServiceService {
-  private angebot: Angebot = null;
+  private userOffer: UserOffer = null;
   private basePath = 'https://einkaufr.herokuapp.com/api/v1/offers';
 
   constructor(
@@ -17,19 +15,33 @@ export class OfferServiceService {
   ) { }
 
   getOwnOffer() {
-    return this.angebot;
+    return this.userOffer;
   }
 
-  setOwnOffer(ownOffer: Angebot) {
-    this.angebot = ownOffer;
+  setOwnOffer(ownOffer: UserOffer) {
+    this.userOffer = ownOffer;
   }
 
   getOffers(): Observable<UserOffer> {
+    this.http.get<UserOffer>(`${this.basePath}`).subscribe(
+      value => console.log(value)
+    );
     return this.http.get<UserOffer>(`${this.basePath}`);
   }
 
-  sendOffer(): Observable<any> {
-    const offer: UserOffer = new UserOffer(3, 45670, '12345, 678910', 'offen', ['Eier', 'mehl']);
+  sendOffer(offer: UserOffer): Observable<any> {
+    /*const coordinate: UserCoordinate = <UserCoordinate> {
+      id: 3,
+      longitude: 11234,
+      latitude: 87654
+    };
+    const offertest: UserOffer = <UserOffer>{
+      id: 0,
+      timestamp: 0,
+      userCoordinate: coordinate,
+      offerStatus: `CLAIMED`,
+      shoppingCart: [`String`]
+    };*/
     return this.http.post(`${this.basePath}`, offer);
   }
 

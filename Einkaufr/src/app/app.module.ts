@@ -12,6 +12,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { InquiryModule } from './inquiry/inquiry.module';
 import { DeliveryComponent } from './helper/delivery/delivery.component';
+import { ChatAreaComponent } from './fragments/chat-area/chat-area.component';
 
 const appRoutes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -29,7 +30,8 @@ const appRoutes: Routes = [
     InputComponent,
     DetailviewComponent,
     OverviewComponent,
-    DeliveryComponent
+    DeliveryComponent,
+    ChatAreaComponent
   ],
   imports: [
     RouterModule.forRoot(

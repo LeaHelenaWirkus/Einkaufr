@@ -1,9 +1,13 @@
 
 
-<h4>{{selectedAngebot.getBeschreibung()}}</h4>
-<p>{{selectedAngebot.getDetails()}}</p>
+<h4>{{selectedOffer?.title}}</h4>
+<p>{{selectedOffer?.getShoppingCart()}}</p>
 <br>
   Karte mit Zielort
+<br>
+
+<!--<textarea class="col-12" [rows]="12" >Chatbereich</textarea>-->
+<app-chat-area></app-chat-area>
 <br>
 <button (click)=offerSolved()>Helfen erledigt</button>
 

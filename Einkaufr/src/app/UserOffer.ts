@@ -1,17 +1,37 @@
+import {UserCoordinate} from './UserCoordinate';
+import {ChatText} from './ChatText';
+
+
 export class UserOffer {
+  id: number;
+  title: string;
+  timestamp: number;
+  coordinate: UserCoordinate;
+  status: string;
+  shoppingCart: string[];
+  chatTexts: ChatText[];
 
 
-  private id: number;
-  private timestamp: number;
-  private coordinate: string;
-  private status: string;
-  private list: string[];
+  getId(): number {
+    return this.id;
+  }
 
-  constructor(id: number, timestamp:number, coordinate:string, status:string, list:string[]) {
+  constructor(id: number, title: string, timestamp: number, coordinate: UserCoordinate,
+              status: string, shoppingChart: string[], chatTexts: ChatText[]) {
     this.id = id;
+    this.title = title;
     this.timestamp = timestamp;
     this.coordinate = coordinate;
     this.status = status;
-    this.list = list;
+    this.shoppingCart = shoppingChart;
+    this.chatTexts = chatTexts;
+  }
+
+  getOfferStatus(): string {
+    return this.status;
+  }
+
+  getShoppingCart(): string[] {
+    return this.shoppingCart;
   }
 }

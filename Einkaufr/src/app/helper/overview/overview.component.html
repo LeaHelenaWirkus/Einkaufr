@@ -38,9 +38,9 @@
             </tr>
           </table>
           <div *ngIf="selectedOffer !== null">
-            <label>{{selectedOffer.getDetails()}}</label>
+            <label>{{selectedOffer.shoppingCart}}</label>
             Map with the target location
-            <button (click)=takeOffer() type="button" id="searchBtn" class="btn btn-sm"> <span
+            <button (click)=takeOffer(selectedOffer) type="button" id="searchBtn" class="btn btn-sm"> <span
               class="glyphicon glyphicon-search"></span>Respond to this offer
             </button>
           </div>

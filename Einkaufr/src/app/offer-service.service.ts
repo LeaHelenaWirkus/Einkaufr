@@ -44,11 +44,12 @@ export class OfferServiceService {
     } as UserCoordinate;
     const offertest: UserOffer = {
       id: 0,
+      title: "",
       timestamp: 0,
       userCoordinate: coordinate,
       offerStatus: `CLAIMED`,
       shoppingCart: [`Eier`, 'Mehl']
-    } as UserOffer;
+    };
     return this.http.post(`${this.basePath}`, offertest);
 
 }

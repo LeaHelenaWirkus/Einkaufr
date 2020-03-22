@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {UserOffer} from './UserOffer';
 import {UserCoordinate} from './UserCoordinate';
 import {ChatText} from './ChatText';
+import {UserService} from './services/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class OfferServiceService {
   private basePath = 'https://einkaufr.herokuapp.com/api/v1/offers';
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private userService: UserService
   ) {
   }
 
@@ -49,18 +51,21 @@ export class OfferServiceService {
     } as UserCoordinate;
     const message1: ChatText = {
       id: 0,
-      sendDate: 'heute-15 Uhr',
+      sendDate: '',
       chatText: 'Hi, ich komme um 18 Uhr vorbei',
       sendFromHelper: true
     };
     const message2: ChatText = {
       id: 0,
-      sendDate: 'heute-16 Uhr',
+      sendDate: '',
       chatText: 'Hallo, vielen Dank für deine Hilfe',
       sendFromHelper: false
     };
+    const uid: string = this.userService.getUserId();
     const offerTest: UserOffer = {
       id: 0,
+      owner: uid,
+      helper: '',
       title: 'Brauche Nahrung',
       timestamp: 0,
       userCoordinate: coordinate,

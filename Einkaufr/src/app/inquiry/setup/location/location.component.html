@@ -20,11 +20,11 @@
         <input type="text" (keyup)="onSearchKeyUp($event)"/>
 
         <div *ngIf="searchResults">
-          <p *ngIf="searchResults.length === 0">Sorry...No results found.</p>
+          <p *ngIf="searchResults.length === 0" class="lead">Sorry...No results found.</p>
           <ng-container *ngIf="searchResults.length !== 0">
             <p>{{searchResults.length}} Results:</p>
-            <ul>
-              <li *ngFor="let r of searchResults">
+            <ul class="list-group">
+              <li *ngFor="let r of searchResults" class="list-group-item">
                 {{r.address.freeformAddress}}
                 <button (click)="onResultSelected(r.id)" class="btn btn-lg btn-secondary">Submit</button>
               </li>

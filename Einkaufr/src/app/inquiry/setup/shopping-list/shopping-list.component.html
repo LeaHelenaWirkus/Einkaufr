@@ -1,20 +1,53 @@
-<h2>Welche Produkte benötigst du?</h2>
+<div class="site-wrapper">
 
-<div>
-  <ul>
-    <li *ngFor="let item of items">
-      {{item}}
-      <button (click)="removeItem(item)">Entfernen</button>
-    </li>
-  </ul>
+  <div class="site-wrapper-inner">
 
-  <form [formGroup]="addItemForm" (ngSubmit)="addItem()">
-    <input
-      formControlName="newItem"
-      placeholder="Produkt hinzufügen"
-      type="text"/>
-    <button type="submit">Hinzufügen</button>
-  </form>
+    <div class="cover-container">
+
+      <header class="masthead clearfix">
+        <div class="inner">
+          <h3 class="masthead-brand"><a class="brandMastHead" routerLink="/">Einkaufr</a></h3>
+          <nav class="nav nav-masthead">
+            <a class="nav-link active" href="#">Home</a>
+            <a class="nav-link" href="#">Features</a>
+            <a class="nav-link" href="#">Contact</a>
+          </nav>
+        </div>
+      </header>
+
+      <main role="main" class="inner cover">
+        <p class="lead">What do you need? We will help you get it.</p>
+      </main>
+      <div class="cover-container">
+        <ul class="list-group">
+          <li *ngFor="let item of items" class="list-group-item">
+            {{item}}
+            <button (click)="removeItem(item)">Delete from list</button>
+          </li>
+        </ul>
+
+        <form [formGroup]="addItemForm" (ngSubmit)="addItem()">
+          <input
+            formControlName="newItem"
+            placeholder="Add a product"
+            type="text"/>
+          <button type="button" id="searchBtn" class="btn btn-sm">
+            <span class="glyphicon glyphicon-search"></span> Add to list
+          </button>
+          <button (click)="continue()" [disabled]="!isValid()" type="button" class="btn btn-sm"><span
+            class="glyphicon glyphicon-search"></span>Submit
+          </button>
+        </form>
+      </div>
+      <footer class="mastfoot">
+        <div class="inner">
+          <p>Powered by
+            <a href="https://getbootstrap.com/">Bootstrap</a></p>
+        </div>
+      </footer>
+
+    </div>
+
+  </div>
+
 </div>
-
-<button (click)="continue()" [disabled]="!isValid()">Weiter ></button>

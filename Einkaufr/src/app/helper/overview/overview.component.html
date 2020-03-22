@@ -1,4 +1,3 @@
-
 <div class="site-wrapper">
 
   <div class="site-wrapper-inner">
@@ -15,46 +14,50 @@
           </nav>
         </div>
       </header>
+    </div>
 
+    <div class="container" id="overviewContainer">
       <main role="main" class="inner cover">
         <p class="lead">These offers were near you</p>
       </main>
-      <div class="cover-container">
+      <div class="container">
         <div>
-         <table>
+          <table class="table table-striped">
             <thead>
-              <td>Status</td>
-              <td>Beschreibung</td>
-              <td>Ort</td>
-              <td>Einkaufsliste</td>
-              <td>Auswahl</td>
+            <th scope="col">Status</th>
+            <th scope="col">Information</th>
+            <th scope="col">Location</th>
+            <th scope="col">Shopping list</th>
+            <th scope="col">Select</th>
             </thead>
             <tr *ngFor="let item of items">
-              <td>{{item.offerStatus}}</td>
-               <td>{{item.title}}</td>
-              <td>{{item.userCoordinate.latitude}}</td>
-              <td>{{returnShoppingCart(item.shoppingCart)}}</td>
-              <td><button (click)="takeOffer(item)">Diese Hilfsanfrage annehmen</button></td>
+              <td scope="col">{{item.offerStatus}}</td>
+              <td scope="col">{{item.title}}</td>
+              <td scope="col">{{item.userCoordinate.latitude}}</td>
+              <td scope="col">{{returnShoppingCart(item.shoppingCart)}}</td>
+              <td scope="col">
+                <button (click)="takeOffer(item)">Claim this request</button>
+              </td>
             </tr>
           </table>
           <div *ngIf="selectedOffer !== null">
-            <label>{{selectedOffer.getDetails()}}</label>
+            <label>{{selectedOffer.shoppingCart}}</label>
             Map with the target location
-            <button (click)=takeOffer() type="button" id="searchBtn" class="btn btn-sm"> <span
+            <button (click)=takeOffer(selectedOffer) type="button" id="searchBtn" class="btn btn-sm"> <span
               class="glyphicon glyphicon-search"></span>Respond to this offer
             </button>
           </div>
         </div>
       </div>
+    </div>
+    <div class="cover-container">
       <footer class="mastfoot">
         <div class="inner">
           <p>Powered by
             <a href="https://getbootstrap.com/">Bootstrap</a></p>
         </div>
       </footer>
-
     </div>
-
   </div>
 
 </div>

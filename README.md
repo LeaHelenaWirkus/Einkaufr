@@ -1,4 +1,6 @@
 # Einkaufr
+Covid-19 Crowdsourced shopping-aid
+Helping citizens with grocery shopping and keeping the outside to a minimum
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
 

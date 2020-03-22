@@ -1,4 +1,4 @@
-import {UserCoordinate} from "./UserCoordinate";
+import {UserCoordinate} from './UserCoordinate';
 
 
 export class UserOffer {

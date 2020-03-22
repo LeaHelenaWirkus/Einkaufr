@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {UserOffer} from "./UserOffer";
-import {UserCoordinate} from "./UserCoordinate";
+import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {UserOffer} from './UserOffer';
+import {UserCoordinate} from './UserCoordinate';
 
 @Injectable({
   providedIn: 'root'
@@ -20,14 +20,14 @@ export class OfferServiceService {
   }
 
 
-  setOwnOffer(ownOffer: Angebot) {
-    this.angebot = ownOffer;
+  setOwnOffer(ownOffer: UserOffer) {
+    this.ownUserOffer = ownOffer;
   }
 
   getOffers(): Observable<UserOffer[]> {
     this.http.get<UserOffer>(`${this.basePath}`).subscribe(
       value => console.log(value)
-    )
+    );
     return this.http.get<UserOffer[]>(`${this.basePath}`);
   }
 
@@ -36,20 +36,20 @@ export class OfferServiceService {
     return this.http.post(`${this.basePath}`, offer);
   }
 
-  sendTestOffer(): Observable<any>{
-    const coordinate: UserCoordinate = <UserCoordinate> {
+  sendTestOffer(): Observable<any> {
+    const coordinate: UserCoordinate = {
       id: 3,
       longitude: 11234,
       latitude: 87654
-    };
-    const offertest: UserOffer = <UserOffer>{
+    } as UserCoordinate;
+    const offertest: UserOffer = {
       id: 0,
       timestamp: 0,
       userCoordinate: coordinate,
       offerStatus: `CLAIMED`,
       shoppingCart: [`Eier`, 'Mehl']
-    };
-  return this.http.post(`${this.basePath}`, offertest);
+    } as UserOffer;
+    return this.http.post(`${this.basePath}`, offertest);
 
 }
 }

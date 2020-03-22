@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {Angebot} from "./Angebot";
-import {UserOffer} from "../../UserOffer";
-import {UserCoordinate} from "../../UserCoordinate";
-import {OfferServiceService} from "../../offer-service.service";
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {UserOffer} from '../../UserOffer';
+import {OfferServiceService} from '../../offer-service.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -31,17 +29,19 @@ export class OverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.offers.getOffers().subscribe(
-      value => {console.log("Value for item " + value[0].id);
-      this.items = value;
-      console.log("Items after push" + this.items[0].id)}
+      value => {
+        console.log('Value for item ' + value[0].id);
+        this.items = value;
+        console.log('Items after push' + this.items[0].id);
+      }
     );
     this.offers.sendTestOffer().subscribe(
       value => console.log(value)
-    )
-    console.log("Items: " + this.items);
+    );
+    console.log('Items: ' + this.items);
 
   }
-  }
+
 
   takeOffer(item: UserOffer) {
     this.selectedOffer = item;
@@ -51,9 +51,10 @@ export class OverviewComponent implements OnInit {
 
   returnShoppingCart(shoppingCart: string[]) {
     this.output = '';
+    // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < shoppingCart.length; i++) {
       console.log(shoppingCart[i]);
-      this.output += shoppingCart[i] + ", ";
+      this.output += shoppingCart[i] + ', ';
     }
     return this.output;
   }

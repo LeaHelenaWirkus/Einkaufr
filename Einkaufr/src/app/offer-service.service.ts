@@ -61,12 +61,13 @@ export class OfferServiceService {
     };
     const offerTest: UserOffer = {
       id: 0,
+      title: "",
       timestamp: 0,
       userCoordinate: coordinate,
       offerStatus: `CLAIMED`,
       shoppingCart: [`Eier`, 'Mehl'],
       chatTexts: [message1, message2]
-    } as UserOffer;
+    };
     return this.http.post(`${this.basePath}`, offerTest);
 
   }

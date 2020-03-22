@@ -1,35 +1,63 @@
-<p>Angebote in deiner Nähe</p>
-<div>
-      <table>
-        <thead>
-        <td>Status</td>
-        <td>Beschreibung</td>
-        <td>Ort</td>
-        <td>Einkaufsliste</td>
-          <td>Auswahl</td>
-        </thead>
-        <tr *ngFor="let item of items">
-          <td>{{item.offerStatus}}</td>
-          <td>{{item.title}}</td>
-          <td>{{item.userCoordinate.latitude}}</td>
-          <td>{{returnShoppingCart(item.shoppingCart)}}</td>
-          <td><button (click)="takeOffer(item)">Diese Hilfsanfrage annehmen</button></td>
-        </tr>
-      </table>
-      <!--<button (click)="removeItem(item)">Entfernen</button>
-      <button (click)="moreInfos(item)">Weitere Infos</button>-->
+<div class="site-wrapper">
 
-  <!--<form [formGroup]="addItemForm" (ngSubmit)="addItem()">
-    <input
-      formControlName="newBeschreibung"
-      placeholder="Titel einfügen"
-      id="beschreibung"
-      type="text"/>
-    <input
-      formControlName="newDetails"
-      placeholder="Detaillierte Beschreibung einfügen"
-      type="text"/>
-    <button type="submit">Hinzufügen</button>
-  </form>-->
+  <div class="site-wrapper-inner">
+
+    <div class="cover-container">
+
+      <header class="masthead clearfix">
+        <div class="inner">
+          <h3 class="masthead-brand"><a class="brandMastHead" routerLink="/">Einkaufr</a></h3>
+          <nav class="nav nav-masthead">
+            <a class="nav-link active" href="#">Home</a>
+            <a class="nav-link" href="#">Features</a>
+            <a class="nav-link" href="#">Contact</a>
+          </nav>
+        </div>
+      </header>
+    </div>
+
+    <div class="container" id="overviewContainer">
+      <main role="main" class="inner cover">
+        <p class="lead">These offers were near you</p>
+      </main>
+      <div class="container">
+        <div>
+          <table class="table table-striped">
+            <thead>
+            <th scope="col">Status</th>
+            <th scope="col">Information</th>
+            <th scope="col">Location</th>
+            <th scope="col">Shopping list</th>
+            <th scope="col">Select</th>
+            </thead>
+            <tr *ngFor="let item of items">
+              <td scope="col">{{item.offerStatus}}</td>
+              <td scope="col">{{item.title}}</td>
+              <td scope="col">{{item.userCoordinate.latitude}}</td>
+              <td scope="col">{{returnShoppingCart(item.shoppingCart)}}</td>
+              <td scope="col">
+                <button (click)="takeOffer(item)">Claim this request</button>
+              </td>
+            </tr>
+          </table>
+          <div *ngIf="selectedOffer !== null">
+            <label>{{selectedOffer.shoppingCart}}</label>
+            Map with the target location
+            <button (click)=takeOffer(selectedOffer) type="button" id="searchBtn" class="btn btn-sm"> <span
+              class="glyphicon glyphicon-search"></span>Respond to this offer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cover-container">
+      <footer class="mastfoot">
+        <div class="inner">
+          <p>Powered by
+            <a href="https://getbootstrap.com/">Bootstrap</a></p>
+        </div>
+      </footer>
+    </div>
+  </div>
 
 </div>

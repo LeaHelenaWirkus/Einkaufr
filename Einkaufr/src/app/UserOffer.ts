@@ -1,17 +1,23 @@
+import {UserCoordinate} from "./UserCoordinate";
+
+
 export class UserOffer {
+  private _id: number;
+  timestamp: number;
+  userCoordinate: UserCoordinate;
+  private _offerStatus: string;
+  private _shoppingCart: string[];
 
 
-  private id: number;
-  private timestamp: number;
-  private coordinate: string;
-  private status: string;
-  private list: string[];
+  get id(): number {
+    return this._id;
+  }
 
-  constructor(id: number, timestamp:number, coordinate:string, status:string, list:string[]) {
-    this.id = id;
-    this.timestamp = timestamp;
-    this.coordinate = coordinate;
-    this.status = status;
-    this.list = list;
+  get offerStatus(): string {
+    return this._offerStatus;
+  }
+
+  get shoppingCart(): string[] {
+    return this._shoppingCart;
   }
 }

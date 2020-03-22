@@ -59,6 +59,7 @@ export class LocationComponent implements OnInit {
       latitude: selectedResult.position.lat
     };
 
+
     this.router.navigate(['../shopping-list'], {relativeTo: this.route});
   }
 }

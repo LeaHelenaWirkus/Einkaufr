@@ -41,8 +41,10 @@ export class ShoppingListComponent implements OnInit {
 
   addItem() {
     const value = this.addItemForm.controls.newItem.value;
+    console.log("addItem");
     this.items.push(value);
     // clear input for next item
+
     this.addItemForm.controls.newItem.setValue('');
   }
 

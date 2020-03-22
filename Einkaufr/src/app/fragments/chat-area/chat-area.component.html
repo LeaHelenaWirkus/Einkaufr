@@ -1,0 +1,35 @@
+<div class="container">
+  <div *ngIf="isHelper">
+    <label>Kommuniziere mit der Person, der du hilfst</label>
+  </div>
+  <div *ngIf="!isHelper && claimed">
+    <label>Jemand hat zugesagt, dir zu helfen</label>
+    <label>Kommuniziere mit der Person, die dir hilft</label>
+  </div>
+  <div *ngIf="claimed">
+  <div id="chatScrollArea">
+    <table id="historyTable">
+      <tbody>
+      <tr *ngFor="let line of chatTextTable">
+        <td>{{line[0]}}</td>
+        <td></td>
+        <td>{{line[1]}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+    <div class="input-group mt-1">
+      <label> Neue Nachricht:
+        <input type="text"
+               #box
+               (keyup)="changeChatText(box.value)"
+               (keyup.enter)="sendMessage()">
+      </label>
+      <div class="input-group-append">
+        <div *ngIf="chatTextValue !== ''">
+          <button class="btn btn-outline-secondary" type="button" (click)="sendMessage()">Senden</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,6 @@
   <div class="site-wrapper-inner">
 
     <div class="cover-container">
-
       <header class="masthead clearfix">
         <div class="inner">
           <h3 class="masthead-brand"><a class="brandMastHead" routerLink="/">Einkaufr</a></h3>
@@ -16,12 +15,17 @@
       </header>
       <div class="cover-container">
         <div class="container">
-          <p class="lead">{{selectedAngebot.title}}</p>
-          <p class="lead">{{selectedAngebot.shoppingCart}}</p>
-          <p>map of the target</p>
-          <button (click)=offerSolved() type="button" id="searchBtn" class="btn btn-sm">
-            <span class="glyphicon glyphicon-search"></span>Wrap up the response
-          </button>
+          <h4>{{selectedOffer?.title}}</h4>
+          <p>{{selectedOffer?.shoppingCart}}</p>
+          <br>
+          Karte mit Zielort
+          <br>
+          <br>
+          <app-chat-area isHelper="true"></app-chat-area>
+          <br>
+          <button (click)=offerSolved() type="button" id="searchBtn" class="btn btn-sm">Helfen erledigt
+            <span class="glyphicon glyphicon-search"></span></button>
+
         </div>
       </div>
       <footer class="mastfoot">
@@ -32,7 +36,5 @@
       </footer>
 
     </div>
-
   </div>
-
 </div>

@@ -9,7 +9,6 @@ export class UserService {
   constructor() { }
 
   public getUserId(): string {
-    const localStorage = Window.prototype.localStorage;
     const userToken = localStorage.getItem('Einkaufr');
     if (userToken) {
       return userToken;

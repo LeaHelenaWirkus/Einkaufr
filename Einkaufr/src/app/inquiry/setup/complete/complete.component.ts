@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {UserCoordinate} from "../../../UserCoordinate";
-import {UserOffer} from "../../../UserOffer";
-import {SetupSharedDataService} from "../../setup-shared-data.service";
-import {OfferServiceService} from "../../../offer-service.service";
+import {UserCoordinate} from '../../../UserCoordinate';
+import {UserOffer} from '../../../UserOffer';
+import {SetupSharedDataService} from '../../setup-shared-data.service';
+import {OfferService} from '../../../services/offer.service';
+import {Router} from '@angular/router';
+import {ChatText} from '../../../ChatText';
 
 @Component({
   selector: 'app-complete',
@@ -13,30 +15,16 @@ export class CompleteComponent implements OnInit {
 
   constructor(
     private data: SetupSharedDataService,
-    private offerService: OfferServiceService
+    private offerService: OfferService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    const coordinate: UserCoordinate = <UserCoordinate> {
-      id: 0,
-      longitude: this.data.selectedLocation.longitude,
-      latitude: this.data.selectedLocation.latitude
-    };
-    const offer: UserOffer = <UserOffer>{
-      id: 0,
-      title: "",
-      timestamp: 0,
-      userCoordinate: coordinate,
-      offerStatus: `UNCLAIMED`,
-      shoppingCart: this.data.shoppingList
-    };
-    this.offerService.sendOffer(offer).subscribe(
-      value => console.log(value)
-    );
-    this.offerService.getOffers().subscribe(
-      value => console.log(value)
-    )
+  }
 
+  offerSolved() {
+    this.offerService.offerSolved();
+    this.router.navigate(['']);
   }
 
 }

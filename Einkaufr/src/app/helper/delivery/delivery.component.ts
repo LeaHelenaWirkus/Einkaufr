@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {OfferServiceService} from '../../offer-service.service';
+import {OfferService} from '../../services/offer.service';
 import {UserOffer} from '../../UserOffer';
 
 @Component({
@@ -10,20 +10,20 @@ import {UserOffer} from '../../UserOffer';
 })
 export class DeliveryComponent implements OnInit {
 
-  selectedAngebot: UserOffer;
+  selectedOffer: UserOffer;
 
   constructor(
     private router: Router,
-    private offers: OfferServiceService
+    private offerService: OfferService
   ) {
   }
 
   ngOnInit(): void {
-    this.selectedAngebot = this.offers.getOwnOffer();
+    this.selectedOffer = this.offerService.getOwnOffer();
   }
 
   offerSolved() {
+    this.offerService.offerSolved();
     this.router.navigate(['']);
   }
-
 }

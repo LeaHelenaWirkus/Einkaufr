@@ -10,17 +10,18 @@ import {OfferService} from '../../services/offer.service';
 export class ChatAreaComponent implements OnInit {
 
   chatTextValue = '';
+  claimed = false;
   chatTextTable: string[][];
-  @Input() chatTexts: ChatText[] = [];
+  chatTexts: ChatText[] = [];
   @Input() isHelper = false;
-  @Input() useChat = false;
-
   constructor(
-    private offers: OfferService
+    private offerService: OfferService
   ) {
   }
 
   ngOnInit(): void {
+    this.chatTexts = this.offerService.getOwnOffer().chatTexts;
+    this.claimed = this.offerService.getOwnOffer().offerStatus === 'CLAIMED';
     this.buildLists();
     this.messagesListener();
   }
@@ -32,8 +33,11 @@ export class ChatAreaComponent implements OnInit {
       const message = new ChatText();
       message.sendFromHelper = this.isHelper;
       message.chatText = this.chatTextValue;
-      /*message.sendDate = new Date().getTime().toLocaleString();*/
-      this.offers.sendMessage(message);
+      message.sendDate  = null;
+      /*message.sendDate = new Date().getTime().toLocaleString();*/ /*todo build correct dateTime String*/
+      this.chatTexts.push(message);
+      this.buildLists();
+      this.offerService.sendMessage(message);
       this.chatTextValue = ''; /*todo clear always*/
     }
   }
@@ -70,14 +74,14 @@ export class ChatAreaComponent implements OnInit {
 
   messagesListener() {
     this.waitSeconds(5).then(() => {
-      this.offers.getOwnUserOfferUpdate().subscribe(updatedOffer => {
+      this.offerService.getOwnUserOfferUpdate().subscribe(updatedOffer => {
         console.log(updatedOffer.chatTexts.length);
-        this.offers.setOwnOffer(updatedOffer);
+        this.offerService.setOwnOffer(updatedOffer);
         this.chatTexts = updatedOffer.chatTexts;
         this.buildLists();
         this.messagesListener();
-        if (this.chatTexts.length > 0) {
-          this.useChat = true;
+        if (updatedOffer.offerStatus === 'CLAIMED') {
+          this.claimed = true;
         }
       });
     });

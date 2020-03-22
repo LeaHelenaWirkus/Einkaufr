@@ -12,8 +12,6 @@ import {Router} from '@angular/router';
 
 export class OverviewComponent implements OnInit {
 
-  selectedOffer: UserOffer = null;
-
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -39,8 +37,8 @@ export class OverviewComponent implements OnInit {
   }
 
   takeOffer(item: UserOffer) {
-    this.selectedOffer = item;
-    this.offers.setOwnOffer(this.selectedOffer);
+    item.offerStatus = 'CLAIMED';
+    this.offers.setOwnOffer(item);
     this.router.navigate(['helper/delivery']);
   }
 

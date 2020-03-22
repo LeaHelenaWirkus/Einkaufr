@@ -23,9 +23,13 @@ export class OfferService {
     return this.ownUserOffer;
   }
 
+  offerSolved() {
+    this.ownUserOffer = null;
+  }
+
   sendMessage(message: ChatText) {
     this.ownUserOffer.chatTexts.push(message);
-    this.sendOffer(this.ownUserOffer).subscribe(); /*todo eror handling*/
+    this.sendOffer(this.ownUserOffer).subscribe(); /*todo error handling*/
   }
 
   getOwnUserOfferUpdate(): Observable<UserOffer> {
@@ -33,7 +37,8 @@ export class OfferService {
   }
 
   setOwnOffer(ownOffer: UserOffer) {
-    this.sendOffer(ownOffer).subscribe( offer => this.ownUserOffer = offer); /*todo eror handling*/
+    this.ownUserOffer = ownOffer;
+    this.sendOffer(ownOffer).subscribe( offer => this.ownUserOffer = offer); /*todo error handling*/
   }
 
   getOffers(): Observable<UserOffer[]> {

@@ -13,8 +13,6 @@ import {ChatText} from '../../../ChatText';
 })
 export class CompleteComponent implements OnInit {
 
-  chatTexts: ChatText[];
-
   constructor(
     private data: SetupSharedDataService,
     private offerService: OfferService,
@@ -22,25 +20,10 @@ export class CompleteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    /*const coordinate: UserCoordinate = {
-      id: 0,
-      longitude: this.data.selectedLocation.longitude,
-      latitude: this.data.selectedLocation.latitude
-    } as UserCoordinate;
-    const offer: UserOffer = {
-      id: 0,
-      title: '',
-      timestamp: 0,
-      userCoordinate: coordinate,
-      offerStatus: `UNCLAIMED`,
-      shoppingCart: this.data.shoppingList
-    } as UserOffer;
-    this.offerService.sendOffer(offer).subscribe(
-      value => console.log(value)
-    );*/
   }
 
   offerSolved() {
+    this.offerService.offerSolved();
     this.router.navigate(['']);
   }
 

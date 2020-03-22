@@ -24,11 +24,13 @@
         <div>
           <table class="table table-striped">
             <thead>
-            <th scope="col">Status</th>
-            <th scope="col">Information</th>
-            <th scope="col">Location</th>
-            <th scope="col">Shopping list</th>
-            <th scope="col">Select</th>
+            <tr>
+              <th scope="col">Status</th>
+              <th scope="col">Information</th>
+              <th scope="col">Location</th>
+              <th scope="col">Shopping list</th>
+              <th scope="col">Select</th>
+              </tr>
             </thead>
             <tr *ngFor="let item of items">
               <td scope="col">{{item.offerStatus}}</td>
@@ -40,13 +42,6 @@
               </td>
             </tr>
           </table>
-          <div *ngIf="selectedOffer !== null">
-            <label>{{selectedOffer.shoppingCart}}</label>
-            Map with the target location
-            <button (click)=takeOffer(selectedOffer) type="button" id="searchBtn" class="btn btn-sm"> <span
-              class="glyphicon glyphicon-search"></span>Respond to this offer
-            </button>
-          </div>
         </div>
       </div>
     </div>

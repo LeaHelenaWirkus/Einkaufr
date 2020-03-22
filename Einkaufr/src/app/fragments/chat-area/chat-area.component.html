@@ -2,10 +2,12 @@
   <div *ngIf="isHelper">
     <label>Kommuniziere mit der Person, der du hilfst</label>
   </div>
-  <div *ngIf="!isHelper">
+  <div *ngIf="!isHelper && claimed">
+    <label>Jemand hat zugesagt, dir zu helfen</label>
     <label>Kommuniziere mit der Person, die dir hilft</label>
   </div>
-  <div id="chatScrollArea" style="overflow-y: scroll; height: 200px;">
+  <div *ngIf="claimed">
+  <div id="chatScrollArea">
     <table id="historyTable">
       <tbody>
       <tr *ngFor="let line of chatTextTable">
@@ -16,12 +18,13 @@
       </tbody>
     </table>
   </div>
-  <div *ngIf="useChat">
     <div class="input-group mt-1">
-      <input type="text"
-             #box
-             (keyup)="changeChatText(box.value)"
-             (keyup.enter)="sendMessage()">
+      <label> Neue Nachricht:
+        <input type="text"
+               #box
+               (keyup)="changeChatText(box.value)"
+               (keyup.enter)="sendMessage()">
+      </label>
       <div class="input-group-append">
         <div *ngIf="chatTextValue !== ''">
           <button class="btn btn-outline-secondary" type="button" (click)="sendMessage()">Senden</button>

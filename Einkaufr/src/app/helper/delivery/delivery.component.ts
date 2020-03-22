@@ -14,15 +14,16 @@ export class DeliveryComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private offers: OfferService
+    private offerService: OfferService
   ) {
   }
 
   ngOnInit(): void {
-    this.selectedOffer = this.offers.getOwnOffer();
+    this.selectedOffer = this.offerService.getOwnOffer();
   }
 
   offerSolved() {
+    this.offerService.offerSolved();
     this.router.navigate(['']);
   }
 }
